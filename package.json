@@ -1,5 +1,5 @@
 {
-  "name": "jelly",
+  "name": "andromeda",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/stack": "^6.3.17",
     "expo": "~49.0.10",
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",
