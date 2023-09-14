@@ -1,4 +1,5 @@
 const colors = {
-    background: "#38A3A5"
+    background: "#FFFFFF",
+    backgroundDark: "#000000"
 }
 export default colors

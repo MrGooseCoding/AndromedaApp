@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { createStackNavigator } from '@react-navigation/stack';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView , View} from 'react-native';
 import NavBar from './src/Components/NavBar';
 import {NavigationContainer} from '@react-navigation/native';
 import ChatsScreen from './src/Screens/Chats';
 import styles from './src/styles';
+import ResizableBar from './src/Components/ResizableBar';
+import Text from './src/Components/Text';
 
 const Stack = createStackNavigator()
 
@@ -20,7 +22,10 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-      <NavBar callback={()=>{}}/>
+      <View style={styles.Bottom}>
+        <ResizableBar/>
+        <NavBar callback={()=>{}}/>
+      </View>
       <StatusBar style="auto" />
     </SafeAreaView>
   );
