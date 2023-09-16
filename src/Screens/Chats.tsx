@@ -1,4 +1,4 @@
-import { TextInput, View } from "react-native"
+import { ScrollView, TextInput, View } from "react-native"
 import Text from "../Components/Text"
 import styles from "../styles"
 import ChatPreview from '../Components/ChatPreview'
@@ -21,9 +21,9 @@ function ChatsScreen ({navigation, route}: Props) {
             </View>
         </View>
 
-        <View style={styles.chats}>
+        <ScrollView style={styles.chats}>
             <ChatPreview/>
-        </View>
+        </ScrollView>
     </View>
 }
 
