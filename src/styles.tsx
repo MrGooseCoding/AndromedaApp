@@ -14,6 +14,9 @@ const styles = StyleSheet.create({
     smallImage: {
         width: 37, height: 37,
     },
+    title: {
+        fontSize: 40,
+    },
     App: {
         flex: 1,
         paddingTop: Platform.OS === "android" ? StatusBarCurrentHeight: 0,
@@ -22,6 +25,27 @@ const styles = StyleSheet.create({
     Screen: {
         flex: 1,
         backgroundColor: colors.background,
+    },
+    ChatsScreen: {
+    },
+    chats: {
+    },
+    Chat: {
+        gap: 10,
+        padding: 15,
+        flexDirection: "row"
+    },
+    chatTitle:{
+        fontWeight: "bold"
+    },
+    TextInput: {
+        padding: 4,
+        paddingLeft: 10,
+        backgroundColor: "grey",
+        borderRadius: 15,
+        flex: 1,
+        fontSize: 17,
+
     },
     Bottom: {
         bottom: 0,

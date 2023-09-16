@@ -7,6 +7,7 @@ import ChatsScreen from './src/Screens/Chats';
 import styles from './src/styles';
 import ResizableBar from './src/Components/ResizableBar';
 import Text from './src/Components/Text';
+import Bottom from './src/Components/Bottom';
 
 const Stack = createStackNavigator()
 
@@ -18,14 +19,16 @@ export default function App() {
           <Stack.Screen
             name="Chats"
             component={ChatsScreen}
-            options={{ headerShown: false}}
+            options={{ 
+              headerShown: false,
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
-      <View style={styles.Bottom}>
+      <Bottom hideWithKeyboard={true}>
         <ResizableBar/>
         <NavBar callback={()=>{}}/>
-      </View>
+      </Bottom>
       <StatusBar style="auto" />
     </SafeAreaView>
   );
