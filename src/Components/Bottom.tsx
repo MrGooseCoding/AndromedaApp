@@ -6,35 +6,40 @@ import { useRef } from "react";
 
 interface Props {
     children: React.ReactNode,
-    hideWithKeyboard: boolean
+    hideWithKeyboard: boolean,
+    visible: boolean,
     style?: any
 }
 
 function Bottom(props: Props):JSX.Element {
     const fadeAnim = new Animated.Value(0);
 
-  const fadeIn = () => {
-    // Will change fadeAnim value to 1 in 5 seconds
-    if (props.hideWithKeyboard) {
-        Animated.timing(fadeAnim, {
-            toValue: 0,
+    const fadeIn = () => {
+        if (props.hideWithKeyboard) {
+            Animated.timing(fadeAnim, {
+                toValue: 0,
+                duration: 500,
+                useNativeDriver: true,
+            }).start();
+        }
+    };
+
+    const fadeOut = () => {
+        if (props.hideWithKeyboard) {
+            Animated.timing(fadeAnim, {
+            toValue: 400,
             duration: 500,
             useNativeDriver: true,
-        }).start();
-    }
-  };
+            }).start();
+        }
+    };
 
-  const fadeOut = () => {
-    // Will change fadeAnim value to 0 in 3 seconds
-    if (props.hideWithKeyboard) {
-        Animated.timing(fadeAnim, {
-        toValue: 400,
-        duration: 500,
-        useNativeDriver: true,
-        }).start();
-    }
-  };
     useEffect(() => {
+        if (props.visible) {fadeIn()} else {fadeOut()}
+    }, [props.visible])
+
+    useEffect(() => {
+        
         const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow',fadeOut);
         const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide',fadeIn);
         return () => {
@@ -42,7 +47,7 @@ function Bottom(props: Props):JSX.Element {
             keyboardDidShowListener.remove();
         };
     }, [])
-    return <Animated.View style={[styles.Bottom, {translateY: fadeAnim}]}>
+    return <Animated.View style={[styles.Bottom, props.style, {translateY: fadeAnim}]}>
         {props.children}
     </Animated.View>
 }

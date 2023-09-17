@@ -22,7 +22,13 @@ function ChatsScreen ({navigation, route}: Props) {
         </View>
 
         <ScrollView style={styles.chats}>
-            <ChatPreview/>
+            <ChatPreview id={1}/>
+            <ChatPreview id={1}/>
+            <ChatPreview id={1}/>
+            <ChatPreview id={1}/>
+            <ChatPreview id={1}/>
+            <ChatPreview id={1}/>
+
         </ScrollView>
     </View>
 }

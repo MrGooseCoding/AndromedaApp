@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native"
 import { Platform, StatusBar, Dimensions} from "react-native"
 import colors from "./colors"
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 
 const deviceWidth = Dimensions.get('screen').width
 
@@ -11,8 +12,15 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center"
     },
+    centerVertical: {
+        flexGrow : 1, 
+        justifyContent : 'center',
+        textAlignVertical: 'center'
+    },
+
     smallImage: {
         width: 37, height: 37,
+        borderRadius: 37
     },
     title: {
         fontSize: 40,
@@ -28,9 +36,18 @@ const styles = StyleSheet.create({
     },
     ChatsScreen: {
     },
-    chats: {
+    Header:{
+        gap: 10,
+        padding: 20,
+        fontSize: 40,
+        flexDirection: 'row',
+        borderBottomWidth: 1.5,
+        borderBottomColor: "gray",
     },
-    Chat: {
+    chats: {
+        marginBottom: 70,
+    },
+    ChatPreview: {
         gap: 10,
         padding: 15,
         flexDirection: "row"
@@ -42,15 +59,32 @@ const styles = StyleSheet.create({
         padding: 4,
         paddingLeft: 10,
         backgroundColor: "grey",
-        borderRadius: 15,
+        borderRadius: 20,
         flex: 1,
         fontSize: 17,
 
     },
     Bottom: {
+        position: "absolute",
+        zIndex: 2,
         bottom: 0,
+        width: deviceWidth,
+    },
+    messageBottom: {
+        padding: 10,
+        gap: 10,
+        flexDirection: "row"
+    },
+    sendBtn: {
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 20,
+        height: 40,
+        width: 40,
+        backgroundColor: "grey",
     },
     NavBar: {
+        maxHeight: 70,
         borderTopColor: "grey",
         borderTopWidth: 0.25,
         padding: 15,
