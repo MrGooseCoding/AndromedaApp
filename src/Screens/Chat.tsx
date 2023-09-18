@@ -1,14 +1,16 @@
-import { View, Image, TextInput } from "react-native";
+import { View, Image } from "react-native";
+import { BackHandler } from "react-native";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+
+import Message from "../Components/Message";
+import MessageForm from "../Components/MessageForm";
+import MessagesContainer from "../Components/MessagesContainer";
 import Btn from "../Components/Btn";
 import Text from "../Components/Text";
 import styles from "../styles";
-import { BackHandler } from "react-native";
-import { faArrowLeft, faP } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import Bottom from "../Components/Bottom";
-import { faPlane } from "@fortawesome/free-solid-svg-icons";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+
 
 const genericUser = require('./../../assets/generic-user.png')
 
@@ -48,10 +50,10 @@ function ChatScreen({navigation, route, setBottomVisibility}: Props): JSX.Elemen
             </View>
         </View>
 
-        <Bottom hideWithKeyboard={false} visible={true} style={styles.messageBottom}>
-            <TextInput style={styles.TextInput}/>
-            <Btn onPress={()=>{}} style={styles.sendBtn}><FontAwesomeIcon icon={faPaperPlane} size={20} color="white"/></Btn>
-        </Bottom>
+        <MessagesContainer/>
+
+        <MessageForm/>
+        
     </View>
 }
 

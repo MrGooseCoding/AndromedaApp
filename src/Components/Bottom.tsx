@@ -2,7 +2,6 @@ import { Keyboard, View } from "react-native";
 import {useEffect} from 'react'
 import styles from "../styles";
 import { Animated } from "react-native";
-import { useRef } from "react";
 
 interface Props {
     children: React.ReactNode,

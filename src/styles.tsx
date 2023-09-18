@@ -17,7 +17,9 @@ const styles = StyleSheet.create({
         justifyContent : 'center',
         textAlignVertical: 'center'
     },
-
+    container: {
+        padding: 10,
+    },
     smallImage: {
         width: 37, height: 37,
         borderRadius: 37
@@ -66,7 +68,6 @@ const styles = StyleSheet.create({
     },
     Bottom: {
         position: "absolute",
-        zIndex: 2,
         bottom: 0,
         width: deviceWidth,
     },
@@ -90,15 +91,16 @@ const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: colors.background,
         shadowRadius: 70,
-        elevation: 7,
+        elevation: 8,
         flexDirection: "row",
         justifyContent: "space-between" 
     },
     NavBarBtn: {
     },
     ResizableBar: {
+        flex: 1,
         backgroundColor: colors.background,
-        padding: 30,
+        padding: 25,
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40, 
         elevation: 7,
@@ -116,6 +118,20 @@ const styles = StyleSheet.create({
     Text: {
         color: "black",
         fontSize: 20,
+    },
+    Message: {
+        flexDirection: "row",
+        gap: 10,
+    },
+    messageAuthorImage: {
+        width: 45, height: 45,
+        borderRadius: 60
+    },
+    messageContent: {
+        padding: 10,
+        backgroundColor:colors.background,
+        borderRadius: 60,
+        borderWidth: 1,
     }
 })
 
