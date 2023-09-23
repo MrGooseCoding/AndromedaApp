@@ -21,8 +21,12 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     smallImage: {
-        width: 37, height: 37,
+        width: 40, height: 40,
         borderRadius: 37
+    },
+    smallText: {
+        color: "grey",
+        fontSize: 15
     },
     title: {
         fontSize: 40,
@@ -117,21 +121,21 @@ const styles = StyleSheet.create({
     },
     Text: {
         color: "black",
-        fontSize: 20,
+        fontSize: 18
     },
     Message: {
         flexDirection: "row",
         gap: 10,
+        marginBottom: 1
     },
     messageAuthorImage: {
-        width: 45, height: 45,
-        borderRadius: 60
+        marginTop: "auto"
     },
     messageContent: {
-        padding: 10,
+        padding: 7,
         backgroundColor:colors.background,
-        borderRadius: 60,
         borderWidth: 1,
+        borderColor: "grey"
     }
 })
 
