@@ -1,4 +1,4 @@
-import {View} from 'react-native'
+import {FlatList} from 'react-native'
 import styles from '../styles'
 import Message from './Message'
 import AccountType from '../Models/Account'
@@ -11,11 +11,18 @@ interface Props {
 }
 
 function MessagesContainer({messages}: Props):JSX.Element {
-    return <View style={styles.container}>
-        {messages?.map((MessageData, index, elements)=>{
-            return <Message key={MessageData.id} data={MessageData} lastMessage={elements[index-1]} nextMessage={elements[index + 1]}/>
-        })}
-    </View>
+    return <FlatList
+    data={messages}
+    keyExtractor={(item:MessageType) => String(item.id)}
+    renderItem={({ item, index }: { item: MessageType; index: number }) => (
+      <Message
+        data={item}
+        lastMessage={index > 0 ? messages[index - 1] : null}
+        nextMessage={index < messages.length - 1 ? messages[index + 1] : null}
+      />
+    )}
+  />
+  
 }
 
 export default MessagesContainer
