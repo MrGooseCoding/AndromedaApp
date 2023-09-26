@@ -7,8 +7,8 @@ const genericUser = require('./../../assets/generic-user.png')
 
 interface Props {
     data: MessageType
-    nextMessage: MessageType
-    lastMessage: MessageType
+    nextMessage: MessageType | null
+    lastMessage: MessageType | null
 }
 
 function Message({data, lastMessage, nextMessage}: Props): JSX.Element {
