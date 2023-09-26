@@ -1,31 +1,52 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, Animated , PanResponder} from 'react-native';
+import { GestureResponderHandlers } from 'react-native';
+import { useState } from 'react'
 const windowWidth = Dimensions.get('window').width;
 
-function useSwipe(onSwipeUp?: Function, onSwipeDown?: Function, rangeOffset = 4) {
-    let firstTouch = 0
+function useSwipe(): {translateY: Animated.Value, handlers: GestureResponderHandlers} {
+    const [translateY] = useState(new Animated.Value(0));
+
+    const panResponder = PanResponder.create({
+        onMoveShouldSetPanResponder: () => true,
+        onPanResponderMove: Animated.event([null, { dy: translateY }], {
+                useNativeDriver: false,
+            }),
+        onPanResponderRelease: (e, gestureState) => {
+            console.log(gestureState.dy)
+            const dy = gestureState.dy
+            const expandThreshold = 10;
+            const retractThreshold = 0;
+
+            if (dy > 200) {
+                // If its dy is big enough, then completely hide
+                Animated.spring(translateY, {
+                    toValue: 500,
+                    useNativeDriver: false,
+                }).start();
+            } else if (dy < expandThreshold) {
+                // User swiped down, so expand the bar
+                Animated.spring(translateY, {
+                    toValue: -600,
+                    useNativeDriver: false,
+                }).start();
+            } else if (dy < retractThreshold) {
+                // User swiped up, so retract the bar
+                Animated.spring(translateY, {
+                    toValue: 0,
+                    useNativeDriver: false,
+                }).start();
+            } else {
+                // The user's swipe didn't meet the thresholds, so return the bar to its initial position
+                Animated.spring(translateY, {
+                    toValue: 0,
+                    useNativeDriver: false,
+                }).start();
+            }
+        },
+    });
     
-    // set user touch start position
-    function onTouchStart(e: any) {
-        firstTouch = e.nativeEvent.pageY
-    }
+    const handlers = panResponder.panHandlers
 
-    // when touch ends check for swipe directions
-    function onTouchEnd(e: any){
-
-        // get touch position and screen size
-        const positionY = e.nativeEvent.pageY
-        const range = windowWidth / rangeOffset
-
-        // check if position is growing positively and has reached specified range
-        if(positionY - firstTouch > range){
-            onSwipeDown && onSwipeDown()
-        }
-        // check if position is growing negatively and has reached specified range
-        else if(firstTouch - positionY > range){
-            onSwipeUp && onSwipeUp()
-        }
-    }
-
-    return {onTouchStart, onTouchEnd};
+    return {translateY, handlers}
 }
 export default useSwipe

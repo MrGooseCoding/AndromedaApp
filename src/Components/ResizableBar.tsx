@@ -1,47 +1,26 @@
 import {View} from 'react-native'
+import { useEffect, useState } from 'react'
+
 import Text from './Text'
 import styles from '../styles'
-import useSwipe from './../Hooks/useSwipe'
-import { Animated } from "react-native";
-import {useEffect} from 'react'
+import { Animated , PanResponder} from "react-native"
+import useSwipe from '../Hooks/useSwipe'
 
 interface Props {
-    setPointerEvents: Function
+    setPointerEvents: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function ResizableBar({setPointerEvents}: Props): JSX.Element {
-    const fadeAnim = new Animated.Value(0);
+    const {translateY, handlers} = useSwipe()
 
-    const fadeIn = () => {
-        setPointerEvents(false)
-        Animated.timing(fadeAnim, {
-            toValue: -500,
-            duration: 500,
-            useNativeDriver: true,
-        }).start();
-    };
-
-    const fadeOut = () => {
-        Animated.timing(fadeAnim, {
-            toValue: 0,
-            duration: 500,
-            useNativeDriver: true,
-        }).start(()=>setPointerEvents(true));
-    };
-    const onSwipeUp = () => {
-        fadeIn()
-    }
-
-    const onSwipeDown = () => {
-        fadeOut()
-    }
-
-    const { onTouchStart, onTouchEnd } = useSwipe(onSwipeUp, onSwipeDown, 2)
-
-    return <Animated.View style={{translateY: fadeAnim, height: 600, marginBottom: -500,}} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+    return <Animated.View style={{transform:[{translateY}]}} 
+            onTouchStart={()=>setPointerEvents(false)} 
+            onTouchEnd={()=>setPointerEvents(true)}
+            >
         <View style={styles.center}>
             <View
-                style={styles.resizeBar}>
+                style={styles.resizeBar}
+                {...handlers}>
             </View>
         </View>
 
